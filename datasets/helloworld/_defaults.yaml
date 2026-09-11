@@ -1,0 +1,12 @@
+assert:
+  - type: javascript
+    value: file://../../dist/src/assertions.js:toolBehavior
+    config:
+      scope: root
+      # Unexpected profile or plugin Tools fail the allowlist; the named denylist
+      # keeps dangerous Tool failures explicit in the report.
+      allowed: [read, write, edit, bash]
+      forbidden: [write, edit, bash]
+  - type: latency
+    threshold: 120000
+    metric: dsh.performance.withinLatencyBudget

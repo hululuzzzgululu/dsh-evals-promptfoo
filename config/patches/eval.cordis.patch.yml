@@ -1,0 +1,6 @@
+# Ordered Cordis profile patch applied on top of the `sdk` profile when the
+# real DSH runtime launches.
+#
+# A production evaluation composition would add patch-list entries for the
+# product's plugins, tools, and agent configuration here.
+[]

@@ -1,0 +1,18 @@
+- description: hello-world check that reads package metadata without changing the repository
+  metadata:
+    caseId: repository-read-package-name
+    category: repository-read
+  vars:
+    prompt: >-
+      Use the read tool to inspect package.json in the current workspace. Do
+      not use bash and do not modify any file. Reply with only the value of
+      its name field.
+  assert:
+    - type: equals
+      value: dsh-evals-promptfoo
+    - type: javascript
+      value: file://../../dist/src/assertions.js:toolBehavior
+      config:
+        scope: root
+        required: [read]
+        maximumCalls: { read: 2 }

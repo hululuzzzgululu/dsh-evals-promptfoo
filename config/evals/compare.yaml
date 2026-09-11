@@ -1,0 +1,27 @@
+description: Real DSH comparison across automatically discovered Dataset domains
+
+prompts: ['{{prompt}}']
+
+providers:
+  - id: file://../../dist/src/provider.js
+    label: candidate-low
+    config:
+      candidateConfig: ../candidate.yaml
+      reasoningEffort: low
+  - id: file://../../dist/src/provider.js
+    label: candidate-high
+    config:
+      candidateConfig: ../candidate.yaml
+      reasoningEffort: high
+
+# Available to every domain; only Cases with a model-graded assertion call it.
+defaultTest: file://../judger.yaml
+
+extensions:
+  - file://../../dist/src/extension.js:afterAll
+
+evaluateOptions: { cache: false, maxConcurrency: 1 }
+
+# This loader applies global and per-domain defaults, then selects the domain
+# requested by the npm runner.
+tests: file://../../dist/src/datasets.js:loadPromptfooDatasets

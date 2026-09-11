@@ -1,0 +1,24 @@
+description: Real DSH evaluation across automatically discovered Dataset domains
+
+prompts:
+  - '{{prompt}}'
+
+providers:
+  - id: file://../../dist/src/provider.js
+    label: candidate
+    config:
+      candidateConfig: ../candidate.yaml
+
+# Available to every domain; only Cases with a model-graded assertion call it.
+defaultTest: file://../judger.yaml
+
+extensions:
+  - file://../../dist/src/extension.js:afterAll
+
+evaluateOptions:
+  cache: false
+  maxConcurrency: 3
+
+# This loader applies global and per-domain defaults, then selects the domain
+# requested by the npm runner.
+tests: file://../../dist/src/datasets.js:loadPromptfooDatasets

@@ -1,0 +1,30 @@
+{
+  "name": "dsh-evals-promptfoo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Promptfoo adapter that evaluates full DeepSeek Harness (DSH) agent runs",
+  "type": "module",
+  "main": "dist/src/provider.js",
+  "scripts": {
+    "build": "node scripts/clean-dist.mjs && tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test 'dist/tests/*.test.js'",
+    "smoke": "npm run typecheck && npm test",
+    "domains": "npm run build && node scripts/run-e2e.mjs --list",
+    "e2e": "npm run build && node --env-file-if-exists=.env scripts/run-e2e.mjs",
+    "e2e:compare": "npm run build && node --env-file-if-exists=.env scripts/run-e2e.mjs --config config/evals/compare.yaml",
+    "report": "promptfoo view -y"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-sdk-client": "0.1.5-alpha.2",
+    "yaml": "2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.10",
+    "promptfoo": "0.122.2",
+    "typescript": "5.9.2"
+  }
+}

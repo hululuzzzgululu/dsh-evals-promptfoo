@@ -1,0 +1,13 @@
+- description: real DSH returns a deterministic readiness marker
+  metadata:
+    caseId: smoke-real-runtime-ready
+    category: smoke
+  vars:
+    prompt: >-
+      Do not call any tools. Reply with exactly DSH_EVAL_READY and no other
+      text, punctuation, Markdown, or explanation.
+  assert:
+    - type: equals
+      value: DSH_EVAL_READY
+    - type: javascript
+      value: file://../dist/src/assertions.js:rootMetrics

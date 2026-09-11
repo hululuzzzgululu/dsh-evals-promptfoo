@@ -1,0 +1,12 @@
+# Shared Promptfoo judge configuration for model-graded assertions.
+#
+# The judge is independent from the DSH candidate Runtime. Model-graded
+# assertions load this provider through `defaultTest.options.provider` in the
+# importing Promptfoo config. Values come from the ignored project `.env`.
+options:
+  provider:
+    id: openai:chat:{{ env.JUDGE_MODEL_NAME }}
+    config:
+      apiBaseUrl: '{{ env.JUDGE_BASE_URL }}'
+      apiKeyEnvar: JUDGE_API_KEY
+      temperature: 0

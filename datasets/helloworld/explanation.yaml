@@ -1,0 +1,27 @@
+- description: hello-world check for a repository-grounded explanation
+  metadata:
+    caseId: judged-readme-workflow-explanation
+    category: model-graded
+  vars:
+    prompt: >-
+      Use the read tool to inspect README.md. In concise Chinese, explain the
+      difference between npm run smoke and npm run e2e, and state whether each
+      one calls a real model. Do not modify any file.
+  assert:
+    - type: javascript
+      value: file://../../dist/src/assertions.js:toolBehavior
+      config:
+        scope: root
+        required: [read]
+        maximumCalls: { read: 3 }
+    - type: llm-rubric
+      value: >-
+        The answer is concise Chinese, accurately says that npm run smoke is
+        an offline build/type/unit-contract check that does not call a model,
+        and accurately says that npm run e2e launches real DSH and calls the
+        configured real model.
+    - type: factuality
+      value: >-
+        npm run smoke 只执行离线构建、类型检查和单元测试，不调用模型。
+        npm run e2e 会启动真实 DSH Runtime，并调用已配置的 Candidate 模型。
+      metric: dsh.answer.factuality

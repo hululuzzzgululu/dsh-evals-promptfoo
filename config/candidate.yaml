@@ -1,0 +1,12 @@
+# Single checked-in definition of the DSH Candidate evaluated by every run.
+# Deployment values stay in .env; this file records only their variable names.
+profile: sdk
+provider: deepseek-official
+patches:
+  - patches/eval.cordis.patch.yml
+cwd: ..
+
+model:
+  nameEnv: CANDIDATE_MODEL_NAME
+  baseUrlEnv: CANDIDATE_BASE_URL
+  apiKeyEnv: CANDIDATE_API_KEY

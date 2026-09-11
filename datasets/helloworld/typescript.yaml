@@ -1,0 +1,18 @@
+- description: hello-world check that reads TypeScript configuration without changing the repository
+  metadata:
+    caseId: repository-read-typescript-target
+    category: repository-read
+  vars:
+    prompt: >-
+      Use the read tool to inspect tsconfig.json in the current workspace. Do
+      not use bash and do not modify any file. Reply with only the exact value
+      of compilerOptions.target.
+  assert:
+    - type: equals
+      value: ES2023
+    - type: javascript
+      value: file://../../dist/src/assertions.js:toolBehavior
+      config:
+        scope: root
+        required: [read]
+        maximumCalls: { read: 2 }
