@@ -1,0 +1,12 @@
+# pnpm settings — allow these dependencies to run postinstall/build scripts
+allowBuilds:
+  "@deepseek-ai/dsh-subprocess-local": true
+  "@google/genai": true
+  "@playwright/browser-chromium": true
+  "@swc/core": true
+  esbuild: true
+  koffi: true
+  node-pty: true
+  onnxruntime-node: true
+  protobufjs: true
+  sharp: true
